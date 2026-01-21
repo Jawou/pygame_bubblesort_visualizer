@@ -8,12 +8,11 @@ GREEN = (0, 255, 0)
 clock = pygame.time.Clock() 
 
 class numbers_displayer:
-  def __init__(self, WIDTH, HEIGHT, numbers, scale, line_width, window_name, matching_list):
+  def __init__(self, WIDTH, HEIGHT, numbers, scale, window_name, matching_list):
     self.WIDTH = WIDTH
     self.HEIGHT = HEIGHT
     self.numbers = numbers
     self.scale = scale
-    self.line_width = line_width
     self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
     self.numbers_length = len(numbers)
     self.matching_list = matching_list
@@ -46,20 +45,58 @@ for i in range(50):
     random_numbers.append(random.randint(0,410))
   
 
-screen = numbers_displayer(360, 480, random_numbers, 1, 5, "insertion-sort", sorted(random_numbers))
+screen = numbers_displayer(360, 480, random_numbers, 1, "template-sort", sorted(random_numbers))
 
 
-n = len(random_numbers)
 #from https://www.geeksforgeeks.org
-for i in range(1, n):
-    key = random_numbers[i]         
-    j = i - 1
-    while j >= 0 and key < random_numbers[j]: 
-        random_numbers[j + 1] = random_numbers[j]
-        j -= 1
+def merge(arr, l, m, r, screen):
+    n1 = m - l + 1
+    n2 = r - m
+
+    L = [0] * n1
+    R = [0] * n2
+
+    for i in range(n1):
+        L[i] = arr[l + i]
+    for j in range(n2):
+        R[j] = arr[m + 1 + j]
+
+    i = j = 0
+    k = l
+
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
         screen.update_screen()
         clock.tick(30)
-    random_numbers[j + 1] = key      
+
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+        screen.update_screen()
+        clock.tick(30)
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+        screen.update_screen()
+        clock.tick(30)
+
+def mergeSort(arr, l, r, screen):
+    if l < r:
+        m = l + (r - l) // 2
+        mergeSort(arr, l, m, screen)
+        mergeSort(arr, m + 1, r, screen)
+        merge(arr, l, m, r, screen)
+mergeSort(random_numbers, 0, len(random_numbers) - 1, screen)
+
+
 
 while True:
     clock.tick(1)
