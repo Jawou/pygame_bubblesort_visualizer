@@ -45,7 +45,7 @@ for i in range(50):
     random_numbers.append(random.randint(0,410))
   
 
-screen = numbers_displayer(360, 480, random_numbers, 1, "template-sort", sorted(random_numbers))
+screen = numbers_displayer(360, 480, random_numbers, 1, "merge-sort", sorted(random_numbers))
 
 
 #from https://www.geeksforgeeks.org

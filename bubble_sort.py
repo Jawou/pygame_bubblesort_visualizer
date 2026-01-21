@@ -49,7 +49,7 @@ screen = numbers_displayer(360, 480, random_numbers, 1, "horrible-sort", sorted(
 
 for i in range(screen.numbers_length):
     for u in range(screen.numbers_length-i-1):
-        clock.tick(240)
+        clock.tick(30)
         if random_numbers[u] > random_numbers[u+1]:
             temp = random_numbers[u]
             random_numbers[u] = random_numbers[u+1]

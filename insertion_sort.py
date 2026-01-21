@@ -60,6 +60,6 @@ for i in range(1, n):
         screen.update_screen()
         clock.tick(30)
     random_numbers[j + 1] = key      
-
+    screen.update_screen()
 while True:
     clock.tick(1)
