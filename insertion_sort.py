@@ -63,16 +63,5 @@ for i in range(1, n):
         clock.tick(30)
     random_numbers[j + 1] = key      
 
-'''
-for i in range(screen.numbers_length):
-    for u in range(screen.numbers_length-i-1):
-        clock.tick(240)
-        if random_numbers[u] > random_numbers[u+1]:
-            temp = random_numbers[u]
-            random_numbers[u] = random_numbers[u+1]
-            random_numbers[u+1] = temp
-        screen.update_screen()
-
 while True:
     clock.tick(1)
-'''
